@@ -14,12 +14,13 @@ def get_student():
     github = request.args.get('github')
 
     first, last, github = hackbright.get_student_by_github(github)
+    project_grade = hackbright.get_grades_by_github(github)
     html = render_template('student_info.html', 
                                     first=first,
                                     last=last,
-                                    github=github)
-
-    return html
+                                    github=github,
+                                    project_grade=project_grade)
+    return html 
 @app.route("/student-search")
 def get_student_form():
     """Show form for searching for a student."""
@@ -37,7 +38,7 @@ def make_new_student():
     last = request.form.get('last')
     github = request.form.get('github')
     hackbright.make_new_student(first, last, github)
-    return render_template('new_student.html',
+    return render_template('new-student.html',
                             first=first,
                             last=last,
                             github=github)

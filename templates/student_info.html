@@ -5,4 +5,9 @@
     {% block content %}
         <h1>{{first}} {{last}}</h1>
         <p>Github Account: {{ github }} </p>
+        <ul>
+        {% for project in project_grade %}
+        <li>Project: {{ project[0] }}. Grade: {{ project[1] }}</li>
+        {% endfor %}
+    </ul>
     {% endblock %}
